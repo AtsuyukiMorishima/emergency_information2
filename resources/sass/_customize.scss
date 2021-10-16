@@ -1,0 +1,26 @@
+body.event {
+  padding-top: 55px;
+  padding-bottom: 15px;
+
+  .cust-header {
+    background-color: #520F83 !important;
+  }
+
+  .cust-main-box {
+    margin-top: 75px;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  body.event {
+    .cust-main-box {
+      margin-top: 15px;
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  body.event {
+    padding-top: 85px;
+  }
+}
