@@ -10013,7 +10013,8 @@ body {
 }
 
 @media (max-width: 575.98px) {
-  body#event-show {
+  body#event-show,
+body#event-about {
     padding-top: 85px;
   }
 }
