@@ -19,7 +19,7 @@
         <div class="card-body">
             <h5 class="card-title text-secondary">ニュース一覧</h5>
             <ul class="list-group list-group-flush">
-                @forelse ($emergencyEvent->siteUrls as $siteUrl)
+                @forelse ($emergencyEvent->siteUrls->sortByDesc('registration_date') as $siteUrl)
                     <li class="list-group-item">
                         <a href="{{ $siteUrl->url }}" class="text-secondary">{{ $siteUrl->url }}</a>
                     </li>
