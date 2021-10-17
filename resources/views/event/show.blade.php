@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 
-<body class="event">
+<body id="event-show" class="pb-2">
     <header class="navbar navbar-light bg-light fixed-top shadow cust-header">
         <div class="container-fluid">
             <span></span>
@@ -21,11 +21,10 @@
             <span></span>
         </div>
     </header>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2 col-md-1"></div>
+    <main class="container mt-lg-5 mt-3">
+        <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
-                <div class="card shadow cust-main-box">
+                <div class="card shadow">
                     <div class="card-body">
                         <h5 class="card-title text-secondary">ニュース一覧</h5>
                         <ul class="list-group list-group-flush">
@@ -42,9 +41,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-1"></div>
         </div>
-    </div>
+    </main>
 
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>
