@@ -9,6 +9,16 @@ use Illuminate\Contracts\View\View;
 
 class EmergencyEventController extends Controller
 {
+    /** @return \Illuminate\Contracts\View\View */
+    public function index(): View
+    {
+        $emergencyEvents = EmergencyEvent::all();
+
+        return view('event.index', [
+            'emergencyEvents' => $emergencyEvents,
+        ]);
+    }
+
     /**
      * @param mixed $id
      * @return \Illuminate\Contracts\View\View
