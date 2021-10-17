@@ -5,7 +5,11 @@
 @section('body_id', 'event-about')
 
 @section('navbar')
-    <span></span>
+    <span>
+        <a href="{{ route('event.index') }}">
+            <i class="fas fa-lg fa-arrow-left text-light"></i>
+        </a>
+    </span>
     <span class="navbar-brand mx-0 text-center text-light">
         災害情報ポータル
         <br class="d-sm-none">
