@@ -12,7 +12,7 @@
 
 @section('contents')
     <div class="row row-cols-1 row-cols-md-2">
-        @forelse ($emergencyEvents as $emergencyEvent)
+        @forelse ($emergencyEvents->sortByDesc('event_date') as $emergencyEvent)
             <div class="col p-1">
                 <a href="{{ route('event.show', ['id' => $emergencyEvent->ee_id]) }}">
                     <div class="card shadow-sm">
