@@ -20,10 +20,10 @@ class EmergencyEventController extends Controller
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function show($id): View
+    public function show(int $id): View
     {
         $emergencyEvent = EmergencyEvent::findOrFail($id);
 

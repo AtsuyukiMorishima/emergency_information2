@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', $emergencyEvent->event_title)
+@section('title', "{$emergencyEvent->event_title} - 災害情報ポータルサイト")
 
 @section('body_id', 'event-show')
 

@@ -42,7 +42,7 @@ return [
         ],
 
         'single' => [
-            'driver' => 'single',
+            'driver' => env('APP_ENV', 'production') === 'heroku' ? 'errorlog' : 'single',
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
