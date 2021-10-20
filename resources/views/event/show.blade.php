@@ -5,7 +5,11 @@
 @section('body_id', 'event-show')
 
 @section('navbar')
-    <span></span>
+    <span>
+        <a href="{{ route('event.index') }}">
+            <i class="fas fa-lg fa-arrow-left text-light"></i>
+        </a>
+    </span>
     <span class="navbar-brand mx-0 text-center text-light">
         {{ $emergencyEvent->event_date->format('n月j日') }}
         <br class="d-sm-none">

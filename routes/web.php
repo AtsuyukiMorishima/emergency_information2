@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('', 'EmergencyEventController@index')->name('event.index');
 Route::get('{id}', 'EmergencyEventController@show')->where('id', '[0-9]+')->name('event.show');
+Route::view('about', 'event.about')->name('event.about');

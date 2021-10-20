@@ -7,7 +7,8 @@ body {
 }
 
 @include media-breakpoint-down(xs) {
-  body#event-show {
+  body#event-show,
+  body#event-about {
     padding-top: 85px;
   }
 }

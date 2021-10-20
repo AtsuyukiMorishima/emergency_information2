@@ -7,7 +7,11 @@
 @section('navbar')
     <span class="navbar-brand mx-0 text-center text-light">災害情報ポータルサイト</span>
     <span></span>
-    <span></span>
+    <span>
+        <a href="{{ route('event.about') }}">
+            <i class="fas fa-lg fa-info-circle text-light"></i>
+        </a>
+    </span>
 @endsection
 
 @section('contents')
