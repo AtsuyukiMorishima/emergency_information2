@@ -16,7 +16,7 @@ class EmergencyEvent extends Model
     public $timestamps = false;
 
     /** @var string */
-    protected $table = 'emergency_event';
+    protected $table = 'emergency_events';
 
     /** @var string */
     protected $primaryKey = 'ee_id';
