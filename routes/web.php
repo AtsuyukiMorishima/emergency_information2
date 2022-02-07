@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('', 'EmergencyEventController@index')->name('event.index');
 Route::get('{id}', 'EmergencyEventController@show')->where('id', '[0-9]+')->name('event.show');
 Route::view('about', 'event.about')->name('event.about');
+
+Route::get('admin', 'EmergencyEventController@admin')->name('admin');
+Route::post('post', 'EmergencyEventController@post');
+Route::get('edit/{emergencyEvent}', 'EmergencyEventController@edit');
+Route::get('edit/url/{emergencyEvent}', 'EmergencyEventController@editUrl');
+Route::put('update', 'EmergencyEventController@update');
+
+// Route::put('update', 'EmergencyEventController@update');
+
+Route::delete('delete/{emergencyEvent}', 'EmergencyEventController@destroy');

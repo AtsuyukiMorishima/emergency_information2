@@ -16,7 +16,7 @@ class CreateSiteUrlsTable extends Migration
         Schema::create('site_urls', function (Blueprint $table) {
             $table->id('site_id');
             $table->integer('ee_id');
-            $table->string('URL', 255);
+            $table->string('url', 255);
             $table->timestamps();
         });
     }
