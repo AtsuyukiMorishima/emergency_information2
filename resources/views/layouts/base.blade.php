@@ -7,6 +7,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ url(mix('/css/app.css')) }}">
+
+    <!--Tagifi.js-->
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body id="@yield('body_id')" class="pb-2">

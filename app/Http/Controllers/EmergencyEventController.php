@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EmergencyEvent;
 use App\Models\SiteUrl;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\View\View;
@@ -77,23 +78,22 @@ class EmergencyEventController extends Controller
         }
 
 
-        // //tag付けに関して
-        // // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
-        // preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠 - 々 ー ( ) %\']+)/u', $request->tags, $match);
-        // // $match[0]に#(ハッシュタグ)あり、$match[1]に#(ハッシュタグ)なしの結果が入ってくるので、$match[1]で#(ハッシュタグ)なしの結果のみを使います。
-        // $tags = [];
-        // foreach ($match[1] as $tag) {
-        //     $record = Tag::firstOrCreate(['tag_name'=>$tag]); // firstOrCreateメソッドで、tags_tableのtag_nameカラムに該当のない$tagは新規登録される。
-        //     array_push($tags, $record);// $recordを配列に追加します(=$tags)
-        // };
+        //tag付けに関して
+        // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
+        preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠 - 々 ー ( ) %\']+)/u', $request->tags, $match);
+        // $match[0]に#(ハッシュタグ)あり、$match[1]に#(ハッシュタグ)なしの結果が入ってくるので、$match[1]で#(ハッシュタグ)なしの結果のみを使います。
+        $tags = [];
+        foreach ($match[1] as $tag) {
+            $record = Tag::firstOrCreate(['tag_name'=>$tag]); // firstOrCreateメソッドで、tags_tableのtag_nameカラムに該当のない$tagは新規登録される。
+            array_push($tags, $record);// $recordを配列に追加します(=$tags)
+        };
 
-        // // 投稿に紐付けされるタグのidを配列化
-        // $tags_id = [];
-        // foreach ($tags as $tag) {
-        //     array_push($tags_id, $tag->id);
-        // };
-        // // 投稿にタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
-
+        // 投稿に紐付けされるタグのidを配列化
+        $tags_id = [];
+        foreach ($tags as $tag) {
+            array_push($tags_id, $tag->id);
+        };
+        // 投稿にタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
 
         $emergencyEvent = new EmergencyEvent();
         $emergencyEvent->event_title = $request->event_title;

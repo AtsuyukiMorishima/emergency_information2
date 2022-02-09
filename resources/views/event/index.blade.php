@@ -28,6 +28,9 @@
                             <h5 class="card-title text-secondary">{{ $emergencyEvent->event_title }}</h5>
                             <div class="text-secondary">Subtitile</div>
                             <div class="text-secondary">Hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge</div>
+                            @foreach($emergencyEvent->tags as $tag)
+                                <span>#{{$tag->tag_name}}</span>
+                            @endforeach
                         </div>
                     </a>
                 </div>
