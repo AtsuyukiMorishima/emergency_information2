@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\EmergencyEvent;
+use App\Models\SiteUrl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\View\View;
@@ -27,7 +28,7 @@ class EmergencyEventController extends Controller
     }
 
     /**
-     *
+     *Display event page.
      *
      * @param int $id
      * @return \Illuminate\Contracts\View\View
@@ -59,7 +60,7 @@ class EmergencyEventController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\View\View
+     * @return Object
      */
     public function post(Request $request)
     {
@@ -75,19 +76,39 @@ class EmergencyEventController extends Controller
                 ->withErrors($validator);
         }
 
+
+        // //tag付けに関して
+        // // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
+        // preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠 - 々 ー ( ) %\']+)/u', $request->tags, $match);
+        // // $match[0]に#(ハッシュタグ)あり、$match[1]に#(ハッシュタグ)なしの結果が入ってくるので、$match[1]で#(ハッシュタグ)なしの結果のみを使います。
+        // $tags = [];
+        // foreach ($match[1] as $tag) {
+        //     $record = Tag::firstOrCreate(['tag_name'=>$tag]); // firstOrCreateメソッドで、tags_tableのtag_nameカラムに該当のない$tagは新規登録される。
+        //     array_push($tags, $record);// $recordを配列に追加します(=$tags)
+        // };
+
+        // // 投稿に紐付けされるタグのidを配列化
+        // $tags_id = [];
+        // foreach ($tags as $tag) {
+        //     array_push($tags_id, $tag->id);
+        // };
+        // // 投稿にタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
+
+
         $emergencyEvent = new EmergencyEvent();
         $emergencyEvent->event_title = $request->event_title;
         $emergencyEvent->event_date = $request->event_date;
         $emergencyEvent->save();
+        $emergencyEvent->tags()->attach($tags_id);// 投稿ににタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
 
-        redirect('admin');
+        return redirect('admin');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\EmergencyEvent  $emergencyEvent
-     * @return \Illuminate\Contracts\View\View
+     * @return Object
      */
     public function destroy(EmergencyEvent $emergencyEvent)
     {
@@ -100,7 +121,7 @@ class EmergencyEventController extends Controller
      * Update a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\View\View
+     * @return Object
      */
     public function update(Request $request)
     {
@@ -128,6 +149,7 @@ class EmergencyEventController extends Controller
     /**
      * Display edit content.
      *
+     * @param  \App\Models\EmergencyEvent  $emergencyEvent
      * @return \Illuminate\Contracts\View\View
      */
     public function edit(EmergencyEvent $emergencyEvent): View
@@ -141,9 +163,9 @@ class EmergencyEventController extends Controller
 
 
     /**
-     * Display edit content.
+     * Display edit url content.
      *
-     * @param int $id
+     * @param  \App\Models\EmergencyEvent  $emergencyEvent
      * @return \Illuminate\Contracts\View\View
      */
     public function editUrl(EmergencyEvent $emergencyEvent): View

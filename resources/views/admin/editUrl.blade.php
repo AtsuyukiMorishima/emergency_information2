@@ -10,22 +10,24 @@
             <i class="fas fa-lg fa-arrow-left text-light"></i>
         </a>
     </span>
-    <span class="navbar-brand mx-0 text-center text-light">
-        管理者
-        <br class="d-sm-none">
-        画面
-    </span>
+    <span class="navbar-brand mx-0 text-center text-light">管理者ページ</span>
     <span></span>
 @endsection
 
     <!-- バリデーションエラーの表示に使用-->
     @include('common.errors')
     <!-- バリデーションエラーの表示に使用-->
-
-    <div>{{$emergencyEvent->event_title}}</div>
-    <div>{{$emergencyEvent->event_date}}</div>
-
 @section('contents')
+
+<div class="card shadow">
+    <div class="card-body">
+        <p class="card-text text-secondary">
+          <div>{{$emergencyEvent->event_title}}</div>
+          <div>{{$emergencyEvent->event_date}}</div>
+        </p>
+    </div>
+</div>
+
     <!-- 現在のURL一覧 -->
     @if (count($siteUrls) > 0)
         <div class="card-body">
@@ -35,13 +37,16 @@
                     <thead>
                         <th>URL一覧</th>
                         <th>&nbsp;</th>
+                        <th>&nbsp;</th>
                     </thead>
                     <!-- テーブル本体 -->
                     <tbody>
-                      <form action="{{ url('update') }}" method="POST" class="form-horizontal">
+                      <form action="{{ url('postUrl') }}" method="POST" class="form-horizontal">
+                        {{ csrf_field() }}
                         <tr>
                           <td class="table-text">
-                            <input class="form-control" type="text" name="url" value="">
+                            <input class="form-control" type="text" name="url" placeholder="https//www.">
+                            <input type="hidden" name="ee_id" value="{{$emergencyEvent->ee_id}}">
                           </td>
                           <td class="table-text">
                             <button type="submit" class="btn btn-success">登録</button>
@@ -53,16 +58,19 @@
                     </form>
                       @foreach ($siteUrls as $siteUrl)
                           <tr>
+                            <form action="{{ url('updateUrl') }}" method="POST" class="form-horizontal">
+                              {{ csrf_field() }}
+                              {{ method_field('put') }}
                               <!-- URL -->
                               <td class="table-text">
                                   <input class="form-control" type="text" name="url" value="{{ $siteUrl->url }}">
+                                  <input type="hidden" name="site_id" value="{{ $siteUrl->site_id }}">
                               </td>
                               <!-- 編集ボタン -->
                               <td>
-                                    <button type="submit" class="btn btn-primary">
-                                        <a href="{{ url('edit/'.$siteUrl->ee_id) }}" class="text-light" style="text-decoration: none;">編集</a>
-                                    </button>
+                                    <button type="submit" class="btn btn-primary">更新</button>
                               </td>
+                            </form>
                               <!-- 削除ボタン -->
                               <td>
                                 <form action="{{ url('delete/'.$siteUrl->ee_id) }}" method="POST">
