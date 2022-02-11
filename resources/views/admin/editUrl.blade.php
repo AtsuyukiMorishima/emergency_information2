@@ -45,7 +45,7 @@
                         {{ csrf_field() }}
                         <tr>
                           <td class="table-text">
-                            <input class="form-control" type="text" name="url" placeholder="https//www.">
+                            <input class="form-control" type="text" name="url" placeholder="https//www.sample.jp">
                             <input type="hidden" name="ee_id" value="{{$emergencyEvent->ee_id}}">
                           </td>
                           <td class="table-text">
