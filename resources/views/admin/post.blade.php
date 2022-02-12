@@ -2,7 +2,7 @@
 
 @section('title', '災害情報ポータルプロジェクトについて - 災害情報ポータルサイト')
 
-@section('body_id', 'event-about')
+@section('body_id', 'event-post')
 
 @section('navbar')
     <span>
@@ -19,7 +19,8 @@
 
     <!-- バリデーションエラーの表示に使用-->
     @include('common.errors')
-    <!-- バリデーションエラーの表示に使用-->
+    <!-- フラッシュメッセージの表示に使用-->
+    @include('common.flash')
 
 @section('contents')
     <div class="card shadow">
@@ -32,6 +33,12 @@
                         {{ method_field('put') }}
                         イベントタイトル<input name="event_title" class="form-control" value="{{$emergencyEvent->event_title}}">
                         イベント日時<input type="date" class="form-control" name="event_date" value="{{$emergencyEvent->event_date->format('Y-m-d')}}">
+                        タグ<input name="tags" id="input-custom-dropdown" class="form-control" placeholder="選択"
+                        value="
+                            @foreach($emergencyEvent->tags as $tag)
+                                #{{$tag->tag_name}},
+                            @endforeach
+                        ">
                         <input type="hidden" name="ee_id" value="{{$emergencyEvent->ee_id}}">
                         <div class="text-right">
                         <button type="submit" class="btn btn-primary mt-2">更新</button>
@@ -52,17 +59,6 @@
                         タイトル<input  type="text" class="form-control" name="event_title">
                         日時<input class="form-control" type="date" name="event_date">
                         タグ<input name="tags" id="input-custom-dropdown" class="form-control" placeholder="選択">
-
-            {{-- <div class="form-content">
-                <div class="col-sm-6">
-                <h5 class="font-weight">回収品<i class="fas fa-socks pl-1"></i></h5>
-
-                </div>
-            </div> --}}
-
-
-
-
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary mt-2">登録</button>
                         </div>
@@ -90,7 +86,12 @@
                             <tr>
                                 <!-- タイトル -->
                                 <td class="table-text">
-                                    <div>{{ $emergencyEvent->event_title }}</div>
+                                    <div>
+                                        <div>{{ $emergencyEvent->event_title }}</div>
+                                        @foreach($emergencyEvent->tags as $tag)
+                                            <span>#{{$tag->tag_name}}</span>
+                                        @endforeach
+                                    </div>
                                 </td>
                                 <!-- 編集ボタン -->
                                 <td>

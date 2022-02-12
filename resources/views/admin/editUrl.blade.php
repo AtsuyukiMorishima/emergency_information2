@@ -2,7 +2,7 @@
 
 @section('title', '災害情報ポータルプロジェクトについて - 災害情報ポータルサイト')
 
-@section('body_id', 'event-about')
+@section('body_id', 'edit_url')
 
 @section('navbar')
     <span>
@@ -16,7 +16,9 @@
 
     <!-- バリデーションエラーの表示に使用-->
     @include('common.errors')
-    <!-- バリデーションエラーの表示に使用-->
+    <!-- フラッシュメッセージの表示に使用-->
+    @include('common.flash')
+
 @section('contents')
 
 <div class="card shadow">
@@ -29,7 +31,6 @@
 </div>
 
     <!-- 現在のURL一覧 -->
-    @if (count($siteUrls) > 0)
         <div class="card-body">
             <div class="card-body">
                 <table class="table table-striped task-table">
@@ -56,6 +57,7 @@
                           </td>
                         </tr>
                     </form>
+                    @if (count($siteUrls) > 0)
                       @foreach ($siteUrls as $siteUrl)
                           <tr>
                             <form action="{{ url('updateUrl') }}" method="POST" class="form-horizontal">
@@ -83,11 +85,11 @@
                               </td>
                           </tr>
                       @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>
         </div>
-    @endif
 
 
 @endsection

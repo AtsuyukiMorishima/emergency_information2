@@ -37,6 +37,7 @@ class SiteUrlController extends Controller
         $siteUrl->url = $request->url;
         $siteUrl->save();
 
+        session()->flash('flash_message', 'URLを追加しました。');
         return redirect('/edit/url/'.$request->ee_id);
     }
 
@@ -64,6 +65,7 @@ class SiteUrlController extends Controller
         $siteUrl->url = $request->url;
         $siteUrl->save();
 
-        return redirect('/edit/url/'.$request->site_id);
+        session()->flash('flash_message', 'URLを変更しました。');
+        return redirect('/edit/url/'.$siteUrl->emergencyEvent->ee_id);
     }
 }

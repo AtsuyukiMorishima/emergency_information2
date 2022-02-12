@@ -23,6 +23,7 @@ Route::get('edit/{emergencyEvent}', 'EmergencyEventController@edit');
 Route::put('update', 'EmergencyEventController@update');
 
 Route::get('edit/url/{emergencyEvent}', 'EmergencyEventController@editUrl');
+Route::get('category/{id}', 'EmergencyEventController@category');
 
 Route::post('postUrl', 'SiteUrlController@postUrl');
 Route::put('updateUrl', 'SiteUrlController@updateUrl');

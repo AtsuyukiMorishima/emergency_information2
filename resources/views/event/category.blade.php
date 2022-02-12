@@ -1,12 +1,12 @@
 @extends('layouts.base')
 
-@section('title', '災害情報ポータルサイト')
+@section('title', "{$tag->tag_name} - 災害情報ポータルサイト")
 
-@section('body_id', 'event-index')
+@section('body_id', 'event-show')
 
 @section('navbar')
     <span class="navbar-brand mx-0 text-center text-light">災害情報ポータルサイト</span>
-    <span></span>
+    <span class="navbar-brand mx-0 text-center text-light">#{{$tag->tag_name}}</span>
     <span>
         <a href="{{ route('event.about') }}">
             <i class="fas fa-lg fa-info-circle text-light"></i>
@@ -15,9 +15,8 @@
 @endsection
 
 @section('contents')
-    {{-- <div class="d-flex flex-nowrap"> --}}
     <div class="row row-cols-1 row-cols-md-2 mx-0">
-        @forelse ($emergencyEvents->sortByDesc('event_date') as $emergencyEvent)
+        @forelse ($tag->emergency_events as $emergencyEvent)
             <div class="col p-1">
                 <div class="card shadow-sm">
                     <a href="{{ route('event.show', ['id' => $emergencyEvent->ee_id]) }}">

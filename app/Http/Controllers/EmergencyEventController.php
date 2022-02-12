@@ -13,6 +13,7 @@ use Illuminate\Contracts\View\View;
 
 class EmergencyEventController extends Controller
 {
+
     /**
      * Display index page.
      *
@@ -27,6 +28,7 @@ class EmergencyEventController extends Controller
             'emergencyEvents' => $emergencyEvents,
         ]);
     }
+
 
     /**
      *Display event page.
@@ -43,6 +45,7 @@ class EmergencyEventController extends Controller
         ]);
     }
 
+
     /**
      * Display admin page.
      *
@@ -56,6 +59,23 @@ class EmergencyEventController extends Controller
             'emergencyEvents' => $emergencyEvents,
         ]);
     }
+
+
+    /**
+     * Display category page.
+     *
+     * @param int $id
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function category($id): View
+    {
+        $tag = Tag::find($id);
+
+        return view('event.category', [
+            'tag' => $tag,
+        ]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -77,32 +97,38 @@ class EmergencyEventController extends Controller
                 ->withErrors($validator);
         }
 
-
-        //tag付けに関して
-        // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
-        preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠 - 々 ー ( ) %\']+)/u', $request->tags, $match);
-        // $match[0]に#(ハッシュタグ)あり、$match[1]に#(ハッシュタグ)なしの結果が入ってくるので、$match[1]で#(ハッシュタグ)なしの結果のみを使います。
-        $tags = [];
-        foreach ($match[1] as $tag) {
-            $record = Tag::firstOrCreate(['tag_name'=>$tag]); // firstOrCreateメソッドで、tags_tableのtag_nameカラムに該当のない$tagは新規登録される。
-            array_push($tags, $record);// $recordを配列に追加します(=$tags)
-        };
-
-        // 投稿に紐付けされるタグのidを配列化
-        $tags_id = [];
-        foreach ($tags as $tag) {
-            array_push($tags_id, $tag->id);
-        };
-        // 投稿にタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
-
         $emergencyEvent = new EmergencyEvent();
+
+        if($request->tags){
+
+            //tag付けに関して
+            // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
+            preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠 - 々 ー ( ) %\']+)/u', $request->tags, $match);
+            // $match[0]に#(ハッシュタグ)あり、$match[1]に#(ハッシュタグ)なしの結果が入ってくるので、$match[1]で#(ハッシュタグ)なしの結果のみを使います。
+            $tags = [];
+            foreach ($match[1] as $tag) {
+                $record = Tag::firstOrCreate(['tag_name'=>$tag]); // firstOrCreateメソッドで、tags_tableのtag_nameカラムに該当のない$tagは新規登録される。
+                array_push($tags, $record);// $recordを配列に追加します(=$tags)
+            };
+
+            // 投稿に紐付けされるタグのidを配列化
+            $tags_id = [];
+            foreach ($tags as $tag) {
+                array_push($tags_id, $tag->id);
+            };
+
+            // 投稿にタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
+            $emergencyEvent->tags()->attach($tags_id);
+        }
+
         $emergencyEvent->event_title = $request->event_title;
         $emergencyEvent->event_date = $request->event_date;
         $emergencyEvent->save();
-        $emergencyEvent->tags()->attach($tags_id);// 投稿ににタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
 
+        session()->flash('flash_message', 'イベントを登録しました。');
         return redirect('admin');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -116,6 +142,7 @@ class EmergencyEventController extends Controller
 
         return redirect('admin');
     }
+
 
     /**
      * Update a newly created resource in storage.
@@ -138,10 +165,34 @@ class EmergencyEventController extends Controller
         }
 
         $emergencyEvent = EmergencyEvent::find($request->ee_id);
+
+        if($request->tags){
+
+            //tag付けに関して
+            // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
+            preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠 - 々 ー ( ) %\']+)/u', $request->tags, $match);
+            // $match[0]に#(ハッシュタグ)あり、$match[1]に#(ハッシュタグ)なしの結果が入ってくるので、$match[1]で#(ハッシュタグ)なしの結果のみを使います。
+            $tags = [];
+            foreach ($match[1] as $tag) {
+                $record = Tag::firstOrCreate(['tag_name'=>$tag]); // firstOrCreateメソッドで、tags_tableのtag_nameカラムに該当のない$tagは新規登録される。
+                array_push($tags, $record);// $recordを配列に追加します(=$tags)
+            };
+
+            // 投稿に紐付けされるタグのidを配列化
+            $tags_id = [];
+            foreach ($tags as $tag) {
+                array_push($tags_id, $tag->id);
+            };
+
+        // 投稿にタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
+        $emergencyEvent->tags()->syncWithoutDetaching($tags_id);
+        }
+
         $emergencyEvent->event_title = $request->event_title;
         $emergencyEvent->event_date = $request->event_date;
         $emergencyEvent->save();
 
+        session()->flash('flash_message', 'イベントを変更しました。');
         return redirect('admin');
     }
 

@@ -10,3 +10,4 @@ var input = document.getElementById('input-custom-dropdown'),
         closeOnSelect: false    // <- do not hide the suggestions dropdown once an item has been selected
       }
     })
+
