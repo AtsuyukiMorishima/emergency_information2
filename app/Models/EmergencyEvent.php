@@ -38,7 +38,8 @@ class EmergencyEvent extends Model
         return $this->hasMany(SiteUrl::class, 'ee_id', 'ee_id');
     }
 
-    public function tags(){
+    public function tags()
+    {
 
         return $this->belongsToMany('App\Models\Tag', 'emergency_event_tags');
     }

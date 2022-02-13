@@ -27,7 +27,7 @@ class SiteUrlController extends Controller
         ]);
         //バリデーション:エラー
         if ($validator->fails()) {
-            return redirect('/edit/url/'.$request->ee_id)
+            return redirect('/edit/url/' . $request->ee_id)
                 ->withInput()
                 ->withErrors($validator);
         }
@@ -38,7 +38,7 @@ class SiteUrlController extends Controller
         $siteUrl->save();
 
         session()->flash('flash_message', 'URLを追加しました。');
-        return redirect('/edit/url/'.$request->ee_id);
+        return redirect('/edit/url/' . $request->ee_id);
     }
 
     /**
@@ -56,7 +56,7 @@ class SiteUrlController extends Controller
         ]);
         //バリデーション:エラー
         if ($validator->fails()) {
-            return redirect('/edit/url/'.$request->site_id)
+            return redirect('/edit/url/' . $request->site_id)
                 ->withInput()
                 ->withErrors($validator);
         }
@@ -66,6 +66,6 @@ class SiteUrlController extends Controller
         $siteUrl->save();
 
         session()->flash('flash_message', 'URLを変更しました。');
-        return redirect('/edit/url/'.$siteUrl->emergencyEvent->ee_id);
+        return redirect('/edit/url/' . $siteUrl->emergencyEvent->ee_id);
     }
 }

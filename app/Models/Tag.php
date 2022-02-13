@@ -14,7 +14,7 @@ class Tag extends Model
 
     protected $fillable = ['tag_name'];
 
-    public function emergency_events()
+    public function emergencyEvents()
     {
         return $this->belongsToMany('App\Models\EmergencyEvent', 'emergency_event_tags');
     }
