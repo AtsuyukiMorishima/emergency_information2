@@ -134,6 +134,5 @@
     @endif
 
     <script src="{{ asset('/js/tag.js') }}"></script>
-    {{-- <script src="{{ asset('/js/confirm.js') }}"></script> --}}
 
 @endsection
