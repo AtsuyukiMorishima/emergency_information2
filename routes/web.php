@@ -17,6 +17,7 @@ Route::get('', 'EmergencyEventController@index')->name('event.index');
 Route::get('{id}', 'EmergencyEventController@show')->where('id', '[0-9]+')->name('event.show');
 Route::view('about', 'event.about')->name('event.about');
 
+Route::group(['middleware' => ['auth','verified']], function () {
 Route::get('admin', 'EmergencyEventController@admin')->name('admin');
 Route::post('post', 'EmergencyEventController@post');
 Route::get('edit/{emergencyEvent}', 'EmergencyEventController@edit');
@@ -31,3 +32,8 @@ Route::put('updateUrl', 'SiteUrlController@updateUrl');
 // Route::put('update', 'EmergencyEventController@update');
 
 Route::delete('delete/{emergencyEvent}', 'EmergencyEventController@destroy');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

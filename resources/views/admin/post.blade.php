@@ -11,7 +11,19 @@
         </a>
     </span>
     <span class="navbar-brand mx-0 text-center text-light">管理者ページ</span>
-    <span></span>
+    <span>
+        {{-- ログアウト用のボタン --}}
+        <div class="nav-link" aria-labelledby="navbarDropdown">
+            <a class="text-white" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
+    </span>
 @endsection
 
 <!--css 読み込み-->
