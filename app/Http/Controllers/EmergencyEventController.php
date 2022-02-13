@@ -22,7 +22,7 @@ class EmergencyEventController extends Controller
      */
     public function index(): View
     {
-        $emergencyEvents = EmergencyEvent::all();
+        $emergencyEvents = EmergencyEvent::all()->sortByDesc('event_date');
 
         return view('event.index', [
             'emergencyEvents' => $emergencyEvents,
@@ -67,7 +67,7 @@ class EmergencyEventController extends Controller
      * @param int $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function category($id): View
+    public function category(int $id): View
     {
         $tag = Tag::find($id);
 

@@ -17,7 +17,7 @@
 @section('contents')
     {{-- <div class="d-flex flex-nowrap"> --}}
     <div class="row row-cols-1 row-cols-md-2 mx-0">
-        @forelse ($emergencyEvents->sortByDesc('event_date') as $emergencyEvent)
+        @forelse ($emergencyEvents as $emergencyEvent)
             <div class="col p-1">
                 <div class="card shadow-sm">
                     <a href="{{ route('event.show', ['id' => $emergencyEvent->ee_id]) }}">

@@ -119,10 +119,10 @@
                                 </td>
                                 <!-- 削除ボタン -->
                                 <td>
-                                    <form action="{{ url('delete/'.$emergencyEvent->ee_id) }}" method="POST">
+                                    <form action="{{ url('delete/'.$emergencyEvent->ee_id) }}" method="POST" id="delete">
                                         {{ csrf_field() }}
                                         {{ method_field('delete') }}
-                                        <button type="submit" class="btn btn-danger">削除</button>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('{{ __('Are you sure you want to delete this item?') }}');">削除</button>
                                     </form>
                                 </td>
                             </tr>
@@ -134,5 +134,6 @@
     @endif
 
     <script src="{{ asset('/js/tag.js') }}"></script>
+    {{-- <script src="{{ asset('/js/confirm.js') }}"></script> --}}
 
 @endsection

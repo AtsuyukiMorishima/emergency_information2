@@ -24,7 +24,7 @@
 <div class="card shadow">
     <div class="card-body">
         <p class="card-text text-secondary">
-          <div>{{$emergencyEvent->event_title}}</div>
+          <h5>{{$emergencyEvent->event_title}}</h5>
           <div>{{$emergencyEvent->event_date}}</div>
         </p>
     </div>
@@ -78,7 +78,7 @@
                                 <form action="{{ url('delete/'.$siteUrl->ee_id) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
-                                    <button type="submit" class="btn btn-danger">
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('{{ __('Are you sure you want to delete this item?') }}');">
                                         削除
                                     </button>
                                 </form>
