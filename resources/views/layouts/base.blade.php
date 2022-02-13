@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ url(mix('/css/app.css')) }}">
+    <link rel="stylesheet" href="{{ url('/css/tag.css') }}">
 
     {{-- tagify.js --}}
     <script src="{{ asset(('js/tagify.min.js')) }}"></script>
@@ -29,6 +30,7 @@
     </main>
 
     <script src="{{ url(mix('/js/app.js')) }}"></script>
+    <script src="{{ asset('/js/flash.js') }}"></script>
 </body>
 
 </html>

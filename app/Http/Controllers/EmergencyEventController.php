@@ -52,7 +52,7 @@ class EmergencyEventController extends Controller
      */
     public function admin(): View
     {
-        $emergencyEvents = EmergencyEvent::all();
+        $emergencyEvents = EmergencyEvent::all()->sortByDesc('event_date');
 
         return view('admin.post', [
             'emergencyEvents' => $emergencyEvents,
@@ -97,6 +97,9 @@ class EmergencyEventController extends Controller
         }
 
         $emergencyEvent = new EmergencyEvent();
+        $emergencyEvent->event_title = $request->event_title;
+        $emergencyEvent->event_date = $request->event_date;
+        $emergencyEvent->save();
 
         if ($request->tags) {
             //tag付けに関して
@@ -115,14 +118,9 @@ class EmergencyEventController extends Controller
             foreach ($tags as $tag) {
                 array_push($tagsId, $tag->id);
             };
-
             // 投稿にタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
             $emergencyEvent->tags()->attach($tagsId);
         }
-
-        $emergencyEvent->event_title = $request->event_title;
-        $emergencyEvent->event_date = $request->event_date;
-        $emergencyEvent->save();
 
         session()->flash('flash_message', 'イベントを登録しました。');
         return redirect('admin');
@@ -164,6 +162,9 @@ class EmergencyEventController extends Controller
         }
 
         $emergencyEvent = EmergencyEvent::find($request->ee_id);
+        $emergencyEvent->event_title = $request->event_title;
+        $emergencyEvent->event_date = $request->event_date;
+        $emergencyEvent->save();
 
         if ($request->tags) {
             //tag付けに関して
@@ -186,10 +187,6 @@ class EmergencyEventController extends Controller
         // 投稿にタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
             $emergencyEvent->tags()->syncWithoutDetaching($tagsId);
         }
-
-        $emergencyEvent->event_title = $request->event_title;
-        $emergencyEvent->event_date = $request->event_date;
-        $emergencyEvent->save();
 
         session()->flash('flash_message', 'イベントを変更しました。');
         return redirect('admin');

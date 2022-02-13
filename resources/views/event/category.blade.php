@@ -5,13 +5,14 @@
 @section('body_id', 'event-show')
 
 @section('navbar')
-    <span class="navbar-brand mx-0 text-center text-light">災害情報ポータルサイト</span>
-    <span class="navbar-brand mx-0 text-center text-light">#{{$tag->tag_name}}</span>
     <span>
-        <a href="{{ route('event.about') }}">
-            <i class="fas fa-lg fa-info-circle text-light"></i>
+        <a href="{{ route('event.index') }}">
+            <i class="fas fa-lg fa-arrow-left text-light"></i>
         </a>
     </span>
+    <span class="navbar-brand mx-0 text-center text-light">#{{$tag->tag_name}}</span>
+    <span></span>
+
 @endsection
 
 @section('contents')

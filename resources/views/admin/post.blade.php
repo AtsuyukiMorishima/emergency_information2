@@ -25,10 +25,6 @@
         </div>
     </span>
 @endsection
-
-<!--css 読み込み-->
-<link href="{{ asset('css/form.css') }}" rel="stylesheet">
-
     <!-- バリデーションエラーの表示に使用-->
     @include('common.errors')
     <!-- フラッシュメッセージの表示に使用-->
@@ -100,6 +96,7 @@
                                 <td class="table-text">
                                     <div>
                                         <div>{{ $emergencyEvent->event_title }}</div>
+                                        <div>{{ $emergencyEvent->event_date->format('n月j日') }}</div>
                                         @foreach($emergencyEvent->tags as $tag)
                                             <span>#{{$tag->tag_name}}</span>
                                         @endforeach

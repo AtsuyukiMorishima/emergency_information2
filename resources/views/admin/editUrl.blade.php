@@ -6,7 +6,7 @@
 
 @section('navbar')
     <span>
-        <a href="{{ route('event.index') }}">
+        <a href="{{ route('admin') }}">
             <i class="fas fa-lg fa-arrow-left text-light"></i>
         </a>
     </span>

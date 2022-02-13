@@ -1,4 +1,4 @@
-var input = document.getElementById('input-custom-dropdown'),
+let input = document.getElementById('input-custom-dropdown'),
     // init Tagify script on the above inputs
     tagify = new Tagify(input, {
       whitelist: ["#地震","#台風"],
@@ -10,4 +10,3 @@ var input = document.getElementById('input-custom-dropdown'),
         closeOnSelect: false    // <- do not hide the suggestions dropdown once an item has been selected
       }
     })
-
