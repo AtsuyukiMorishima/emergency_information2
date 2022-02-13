@@ -22,7 +22,7 @@
                 <div class="card shadow-sm">
                     <a href="{{ route('event.show', ['id' => $emergencyEvent->ee_id]) }}">
                         <div class="border-bottom">
-                            <img class="card-img-top" src="{{ asset('img/img.jpeg') }}" alt="" style="width:100%; height:200px;">
+                            <img class="card-img-top" src="{{ asset('img/img.jpeg') }}" alt="" style="width:100%; height:230px;">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title text-secondary">{{ $emergencyEvent->event_title }}</h5>

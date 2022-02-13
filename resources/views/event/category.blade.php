@@ -2,7 +2,7 @@
 
 @section('title', "{$tag->tag_name} - 災害情報ポータルサイト")
 
-@section('body_id', 'event-show')
+@section('body_id', 'event-category')
 
 @section('navbar')
     <span>
@@ -12,7 +12,6 @@
     </span>
     <span class="navbar-brand mx-0 text-center text-light">#{{$tag->tag_name}}</span>
     <span></span>
-
 @endsection
 
 @section('contents')

@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\EmergencyEvent;
 use App\Models\SiteUrl;
 use App\Models\Tag;
+use App\Models\EmergencyEventTag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\View\View;
@@ -166,6 +167,8 @@ class EmergencyEventController extends Controller
         $emergencyEvent->event_date = $request->event_date;
         $emergencyEvent->save();
 
+        EmergencyEventTag::where("emergency_event_ee_id", $request->ee_id)->delete();
+
         if ($request->tags) {
             //tag付けに関して
             // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
@@ -201,7 +204,7 @@ class EmergencyEventController extends Controller
      */
     public function edit(EmergencyEvent $emergencyEvent): View
     {
-        $emergencyEvents = EmergencyEvent::all();
+        $emergencyEvents = EmergencyEvent::all()->sortByDesc('event_date');
         return view('admin.post', [
             'emergencyEvent' => $emergencyEvent,
             'emergencyEvents' => $emergencyEvents,
