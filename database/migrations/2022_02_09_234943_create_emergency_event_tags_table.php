@@ -17,7 +17,7 @@ class CreateEmergencyEventTagsTable extends Migration
             $table->id();
             $table->BigInteger('emergency_event_ee_id')->unsigned();
             $table->BigInteger('tag_id')->unsigned();
-            $table->foreign('emergency_event_id')->references('ee_id')->on('emergency_events')->onDelete('cascade');
+            $table->foreign('emergency_event_ee_id')->references('ee_id')->on('emergency_events')->onDelete('cascade');
         });
     }
 
