@@ -7,10 +7,10 @@
 <!-- フラッシュメッセージの表示に使用-->
 @include('common.flash')
 
-
+    {{-- イベント登録 --}}
     <div class="card shadow">
         <div class="card-body">
-            <p class="card-text text-secondary">
+            <div class="card-text text-secondary">
                 <div>災害イベント登録</div>
                 @if (!Request::is('admin'))
                     {{-- 編集時の表示 --}}
@@ -47,11 +47,11 @@
                         日時<input class="form-control" type="date" name="event_date" value="{{old("event_date")}}">
                         タグ<input name="tags" id="input-custom-dropdown" class="form-control" placeholder="選択">
                         <div class="text-right">
-                            <button type="submit" class="btn btn-primary mt-2">登録</button>
+                            <button type="submit" class="btn btn-primary mt-3">登録</button>
                         </div>
                     </form>
                     @endif
-            </p>
+            </div>
         </div>
     </div>
 
@@ -103,5 +103,4 @@
             </table>
         </div>
     @endif
-    <script src="{{ asset('/js/tag.js') }}"></script>
 @endsection
