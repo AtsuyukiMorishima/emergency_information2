@@ -1,25 +1,13 @@
-@extends('layouts.base')
+@extends('layouts.app')
 
-@section('title', '災害情報ポータルプロジェクトについて - 災害情報ポータルサイト')
+@section('title', '管理者画面 - 災害情報ポータルサイト')
 
-@section('body_id', 'edit_url')
+@section('content')
 
-@section('navbar')
-    <span>
-        <a href="{{ route('admin') }}">
-            <i class="fas fa-lg fa-arrow-left text-light"></i>
-        </a>
-    </span>
-    <span class="navbar-brand mx-0 text-center text-light">管理者:{{Auth::user()->name}}様</span>
-    <span></span>
-@endsection
-
-    <!-- バリデーションエラーの表示に使用-->
-    @include('common.errors')
-    <!-- フラッシュメッセージの表示に使用-->
-    @include('common.flash')
-
-@section('contents')
+<!-- バリデーションエラーの表示に使用-->
+@include('common.errors')
+<!-- フラッシュメッセージの表示に使用-->
+@include('common.flash')
 
   {{-- 災害イベントの内容 --}}
   <div class="card shadow">

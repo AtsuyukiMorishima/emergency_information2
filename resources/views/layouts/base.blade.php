@@ -8,11 +8,6 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ url(mix('/css/app.css')) }}">
     <link rel="stylesheet" href="{{ url('/css/tag.css') }}">
-
-    {{-- tagify.js --}}
-    <script src="{{ asset(('js/tagify.min.js')) }}"></script>
-    <script src="{{ asset(('/js/tagify.polyfills.min.js')) }}"></script>
-    <link rel="stylesheet" href="{{ asset(('/css/tagify.css')) }}">
 </head>
 
 <body id="@yield('body_id')" class="pb-2">
@@ -30,7 +25,6 @@
     </main>
 
     <script src="{{ url(mix('/js/app.js')) }}"></script>
-    <script src="{{ asset('/js/flash.js') }}"></script>
 </body>
 
 </html>

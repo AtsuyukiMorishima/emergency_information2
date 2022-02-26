@@ -6,7 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Models\EmergencyEvent;
 use App\Models\SiteUrl;
+use App\Models\User;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Hash;
 use App\Models\EmergencyEventTag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -55,7 +57,7 @@ class EmergencyEventController extends Controller
     {
         $emergencyEvents = EmergencyEvent::all()->sortByDesc('event_date');
 
-        return view('admin.post', [
+        return view('admin.adminTop', [
             'emergencyEvents' => $emergencyEvents,
         ]);
     }
@@ -205,7 +207,7 @@ class EmergencyEventController extends Controller
     public function edit(EmergencyEvent $emergencyEvent): View
     {
         $emergencyEvents = EmergencyEvent::all()->sortByDesc('event_date');
-        return view('admin.post', [
+        return view('admin.adminTop', [
             'emergencyEvent' => $emergencyEvent,
             'emergencyEvents' => $emergencyEvents,
         ]);
@@ -213,7 +215,7 @@ class EmergencyEventController extends Controller
 
 
     /**
-     * Display edit url content.
+     * Create a newly created resource in storage.
      *
      * @param  \App\Models\EmergencyEvent  $emergencyEvent
      * @return \Illuminate\Contracts\View\View

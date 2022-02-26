@@ -1,36 +1,13 @@
-@extends('layouts.base')
+@extends('layouts.app')
 
-@section('title', '災害情報ポータルプロジェクトについて - 災害情報ポータルサイト')
+@section('content')
 
-@section('body_id', 'event-post')
+<!-- バリデーションエラーの表示に使用-->
+@include('common.errors')
+<!-- フラッシュメッセージの表示に使用-->
+@include('common.flash')
 
-@section('navbar')
-    <span>
-        <a href="{{ route('event.index') }}">
-            <i class="fas fa-lg fa-arrow-left text-light"></i>
-        </a>
-    </span>
-    <span class="navbar-brand mx-0 text-center text-light">管理者:{{Auth::user()->name}}様</span>
-    <span>
-        {{-- ログアウト用のボタン --}}
-        <div class="nav-link" aria-labelledby="navbarDropdown">
-            <a class="text-white" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-        </div>
-    </span>
-@endsection
-    <!-- バリデーションエラーの表示に使用-->
-    @include('common.errors')
-    <!-- フラッシュメッセージの表示に使用-->
-    @include('common.flash')
 
-@section('contents')
     <div class="card shadow">
         <div class="card-body">
             <p class="card-text text-secondary">
@@ -80,7 +57,7 @@
 
     <!-- 現在のイベント一覧 -->
     @if (count($emergencyEvents) > 0)
-        <div class="card-body p-1">
+        <div class="card-body p-2">
             <table class="table table-striped task-table">
                 <!-- テーブルヘッダ -->
                 <thead>
