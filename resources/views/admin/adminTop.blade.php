@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "管理者画面 - 災害情報ポータルサイト")
+
 @section('content')
 
 <!-- バリデーションエラーの表示に使用-->

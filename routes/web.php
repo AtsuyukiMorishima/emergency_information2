@@ -37,8 +37,8 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::put('updateUrl', 'SiteUrlController@updateUrl');
 
     //総合管理者のみアクセス可能
-    Route::get('addUser', 'UserController@addUser')->name('admin.addUser')->middleware('mainAdmin');
-    Route::post('addUserTable', 'UserController@addUserTable')->name('admin.addUserTable')->middleware('mainAdmin');
+    Route::get('addUser', 'UserController@addUser')->name('admin.addUser')->middleware('MainAdmin');
+    Route::post('addUserTable', 'UserController@addUserTable')->name('admin.addUserTable')->middleware('MainAdmin');
 });
 
 Auth::routes(['register' => false]);

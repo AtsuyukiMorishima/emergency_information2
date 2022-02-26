@@ -42,7 +42,7 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item"  href="{{ route('admin') }}">{{__(' Home')}}</a>
+                                <a class="dropdown-item"  href="{{ route('admin') }}">{{__('Home')}}</a>
                                 <a class="dropdown-item"  href="{{ route('admin.addUser') }}">{{__('Register new admin')}}</a>
                                 <a class="dropdown-item"  href="{{ route('admin.updateUser') }}">{{__('Update user')}}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"

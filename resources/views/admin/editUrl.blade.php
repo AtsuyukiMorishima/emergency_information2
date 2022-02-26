@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '管理者画面 - 災害情報ポータルサイト')
+@section('title', "管理者画面 - 災害情報ポータルサイト")
 
 @section('content')
 
