@@ -9,9 +9,9 @@
 
     {{-- イベント登録 --}}
     <div class="card shadow">
+        <div class="card-header">{{ __('Register the event') }}</div>
         <div class="card-body">
             <div class="card-text text-secondary">
-                <div>災害イベント登録</div>
                 @if (!Request::is('admin'))
                     {{-- 編集時の表示 --}}
                     <form action="{{ url('update') }}" method="POST" class="form-horizontal">

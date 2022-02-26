@@ -13,11 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//一般ユーザー観覧可能
 Route::get('', 'EmergencyEventController@index')->name('event.index');
 Route::get('{id}', 'EmergencyEventController@show')->where('id', '[0-9]+')->name('event.show');
 Route::get('category/{id}', 'EmergencyEventController@category');
 Route::view('about', 'event.about')->name('event.about');
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//管理者アクセス可能
 Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('admin', 'EmergencyEventController@admin')->name('admin');
     Route::post('post', 'EmergencyEventController@post');
@@ -26,17 +30,15 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::delete('delete/{emergencyEvent}', 'EmergencyEventController@destroy');
     Route::get('edit/url/{emergencyEvent}', 'EmergencyEventController@editUrl');
 
-    Route::get('addUser', 'UserController@addUser')->name('admin.addUser')->middleware('mainAdmin');
-    Route::post('addUserTable', 'UserController@addUserTable')->name('admin.addUserTable')->middleware('mainAdmin');
     Route::get('updateUser', 'UserController@updateUser')->name('admin.updateUser');
     Route::post('updateUserTable', 'UserController@updateUserTable')->name('admin.updateUserTable');
 
     Route::post('postUrl', 'SiteUrlController@postUrl');
     Route::put('updateUrl', 'SiteUrlController@updateUrl');
+
+    //総合管理者のみアクセス可能
+    Route::get('addUser', 'UserController@addUser')->name('admin.addUser')->middleware('mainAdmin');
+    Route::post('addUserTable', 'UserController@addUserTable')->name('admin.addUserTable')->middleware('mainAdmin');
 });
 
 Auth::routes(['register' => false]);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Route::any('/register', [App\Http\Controllers\HomeController::class, 'index']);

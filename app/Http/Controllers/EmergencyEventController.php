@@ -140,6 +140,7 @@ class EmergencyEventController extends Controller
     {
         $emergencyEvent->delete();
 
+        session()->flash('flash_message', 'イベントを削除しました。');
         return redirect('admin');
     }
 

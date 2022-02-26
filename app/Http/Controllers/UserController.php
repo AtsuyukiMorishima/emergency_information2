@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Hash;
 
-
 class UserController extends Controller
 {
     /**
@@ -86,7 +85,8 @@ class UserController extends Controller
         //バリデーション
             $validator = Validator::make($request->all(), [
             'name' => ['string', 'max:255'],
-            'email' => ['string', 'email', 'max:255',\Illuminate\Validation\Rule::unique('users')->ignore(Auth::user()->id)],
+            'email' => ['string', 'email', 'max:255',
+            \Illuminate\Validation\Rule::unique('users')->ignore(Auth::user()->id)],
             'current_password' => ['required', 'string', 'min:8'],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             ]);
@@ -113,6 +113,4 @@ class UserController extends Controller
         session()->flash('flash_message', 'ユーザーデータを変更しました。');
         return redirect('updateUser');
     }
-
-
 }
