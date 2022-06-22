@@ -25,7 +25,7 @@
                             <img class="card-img-top" src="{{ asset('img/img.jpeg') }}" alt="" style="width:100%; height:230px;">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title text-secondary">{{ $emergencyEvent->event_title }}</h5>
+                            <h5 class="card-title text-secondary">{{ $emergencyEvent->event_date->format('n月j日') }} {{ $emergencyEvent->event_title }}</h5>
                             <div class="text-secondary">Subtitile</div>
                             <div class="text-secondary">Hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge</div>
                             @foreach($emergencyEvent->tags as $tag)
