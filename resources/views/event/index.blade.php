@@ -15,16 +15,25 @@
 @endsection
 
 @section('contents')
+    {{-- <div class="d-flex flex-nowrap"> --}}
     <div class="row row-cols-1 row-cols-md-2 mx-0">
-        @forelse ($emergencyEvents->sortByDesc('event_date') as $emergencyEvent)
+        @forelse ($emergencyEvents as $emergencyEvent)
             <div class="col p-1">
-                <a href="{{ route('event.show', ['id' => $emergencyEvent->ee_id]) }}">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title text-secondary">{{ $emergencyEvent->event_title }}</h5>
+                <div class="card shadow-sm">
+                    <a href="{{ route('event.show', ['id' => $emergencyEvent->ee_id]) }}">
+                        <div class="border-bottom">
+                            <img class="card-img-top" src="{{ asset('img/img.jpeg') }}" alt="" style="width:100%; height:230px;">
                         </div>
-                    </div>
-                </a>
+                        <div class="card-body">
+                            <h5 class="card-title text-secondary">{{ $emergencyEvent->event_date->format('n月j日') }} {{ $emergencyEvent->event_title }}</h5>
+                            <div class="text-secondary">Subtitile</div>
+                            <div class="text-secondary">Hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge</div>
+                            @foreach($emergencyEvent->tags as $tag)
+                                <span><a href="{{ url('category/'.$tag->id)}}">#{{$tag->tag_name}}</a></span>
+                            @endforeach
+                        </div>
+                    </a>
+                </div>
             </div>
         @empty
             <span>Not found.</span>

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\EmergencyEvent;
 use App\Models\SiteUrl;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,5 +18,6 @@ class DatabaseSeeder extends Seeder
     {
         EmergencyEvent::factory(5)->create();
         SiteUrl::factory(15)->create();
+        User::factory()->create();
     }
 }

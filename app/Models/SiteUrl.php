@@ -16,7 +16,7 @@ class SiteUrl extends Model
     public $timestamps = false;
 
     /** @var string */
-    protected $table = 'site_url';
+    protected $table = 'site_urls';
 
     /** @var string */
     protected $primaryKey = 'site_id';

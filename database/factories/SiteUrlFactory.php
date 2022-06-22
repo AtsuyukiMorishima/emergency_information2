@@ -27,7 +27,6 @@ class SiteUrlFactory extends Factory
         return [
             'ee_id'             => $this->faker->randomElement($eeIds),
             'url'               => $this->faker->url(),
-            'registration_date' => $this->faker->date(),
         ];
     }
 }

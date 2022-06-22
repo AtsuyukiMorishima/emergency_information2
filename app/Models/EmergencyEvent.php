@@ -16,7 +16,7 @@ class EmergencyEvent extends Model
     public $timestamps = false;
 
     /** @var string */
-    protected $table = 'emergency_event';
+    protected $table = 'emergency_events';
 
     /** @var string */
     protected $primaryKey = 'ee_id';
@@ -36,5 +36,11 @@ class EmergencyEvent extends Model
     public function siteUrls(): HasMany
     {
         return $this->hasMany(SiteUrl::class, 'ee_id', 'ee_id');
+    }
+
+    public function tags()
+    {
+
+        return $this->belongsToMany('App\Models\Tag', 'emergency_event_tags');
     }
 }
