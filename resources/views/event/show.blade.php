@@ -25,7 +25,8 @@
             <ul class="list-group list-group-flush">
                 @forelse ($emergencyEvent->siteUrls->sortByDesc('registration_date') as $siteUrl)
                     <li class="list-group-item">
-                        <a href="{{ $siteUrl->url }}" class="text-secondary">{{ $siteUrl->url }}</a>
+                        <a href="{{ $siteUrl->url }}" class="text-secondary">@if(empty($siteUrl->title)) {{ $siteUrl->url }} @else {{ $siteUrl->title }} @endif</a>
+                        <a class="text-secondary registration_date">{{ $siteUrl->registration_date }}</a>
                     </li>
                 @empty
                     <li class="list-group-item">

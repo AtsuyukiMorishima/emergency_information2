@@ -16143,3 +16143,7 @@ body#event-about {
     padding-top: 85px;
   }
 }
+
+.registration_date {
+  float: right;
+}
