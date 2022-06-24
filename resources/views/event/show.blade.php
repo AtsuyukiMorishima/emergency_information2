@@ -30,8 +30,15 @@
             <ul class="list-group list-group-flush">
                 @forelse ($emergencyEvent->siteUrls->sortByDesc('registration_date') as $siteUrl)
                     <li class="list-group-item">
-                        <a href="{{ $siteUrl->url }}" class="text-secondary">@if(empty($siteUrl->title)) {{ $siteUrl->url }} @else {{ $siteUrl->title }} @endif</a>
-                        <a class="text-secondary registration_date">{{ $siteUrl->registration_date }}</a>
+                        <a href="{{ $siteUrl->url }}" class="text-secondary site-urls-title">@if(empty($siteUrl->title)) {{ $siteUrl->url }} @else {{ $siteUrl->title }} @endif</a>
+                    <a class="text-secondary registration_date">{{ $siteUrl->registration_date }}</a>
+                    <div>
+                        @isset($siteUrl->tags_json)
+                            @foreach(json_decode($siteUrl->tags_json) as $tag)
+                                #{{$tag->tag_name}}
+                            @endforeach
+                        @endisset
+                    </div>
                     </li>
                 @empty
                     <li class="list-group-item">

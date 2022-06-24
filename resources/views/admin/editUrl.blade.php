@@ -24,7 +24,7 @@
     <table class="table table-striped task-table">
         <!-- テーブルヘッダ -->
         <thead>
-            <th colspan="3">URL一覧</th>
+            <th colspan="3">ニュース一覧</th>
         </thead>
         <!-- テーブル本体 -->
         <tbody>
@@ -35,6 +35,7 @@
               <td class="table-text">
                 <input class="form-control" type="text" name="url" placeholder="https//www.sample.jp" value="{{old("url")}}">
                 <input type="hidden" name="ee_id" value="{{$emergencyEvent->ee_id}}">
+                <input name="tags" id="input-custom-dropdown" class="form-control news-tag" placeholder="タグ">
               </td>
               <td class="table-text">
                 <input class="form-control" type="text" name="title" placeholder="タイトル" value="{{old("title")}}">
@@ -59,9 +60,11 @@
                     <td class="table-text">
                         <input class="form-control" type="text" name="url" value="{{ $siteUrl->url }}">
                         <input type="hidden" name="site_id" value="{{ $siteUrl->site_id }}">
+                        <input name="tags" id="input-custom-dropdown" class="form-control news-tag" placeholder="タグ"
+                        value="@isset($siteUrl->tags_json)@foreach(json_decode($siteUrl->tags_json) as $tag)#{{$tag->tag_name}} @endforeach @endisset">
                     </td>
                     <td class="table-text">
-                        <input class="form-control" type="text" name="title" value="{{ $siteUrl->title }}">
+                        <input class="form-control" type="text" name="title" value="{{ $siteUrl->title }}" placeholder="タイトル">
                         <input type="hidden" name="site_id" value="{{ $siteUrl->site_id }}">
                     </td>
                     <!-- 編集ボタン -->

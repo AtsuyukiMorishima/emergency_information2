@@ -16151,3 +16151,11 @@ body#event-about {
 .reccomend-translate {
   padding-bottom: 20px;
 }
+
+.news-tag {
+  margin-top: 10px;
+}
+
+a.site-urls-title {
+  font-size: 15pt;
+}

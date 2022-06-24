@@ -38,7 +38,7 @@
                             <div class="mt-1 mr-3">{{$item->url}}</div>
                         @endforeach
                         <button type="submit" class="btn btn-success mt-2">
-                            <a href="{{ url('edit/url/'.$emergencyEvent->ee_id) }}" class="text-light" style="text-decoration: none;">URL編集</a>
+                            <a href="{{ url('edit/url/'.$emergencyEvent->ee_id) }}" class="text-light" style="text-decoration: none;">ニュース編集</a>
                         </button>
                     </div>
                 @else
@@ -88,7 +88,7 @@
                             <!-- URL編集ボタン -->
                             <td>
                                 <button type="submit" class="btn btn-success">
-                                    <a href="{{ url('edit/url/'.$emergencyEvent->ee_id) }}" class="text-light" style="text-decoration: none;">URL編集</a>
+                                    <a href="{{ url('edit/url/'.$emergencyEvent->ee_id) }}" class="text-light" style="text-decoration: none;">ニュース編集</a>
                                 </button>
                             </td>
                             <!-- 削除ボタン -->
