@@ -19,6 +19,11 @@
 @endsection
 
 @section('contents')
+    <div class="reccomend-translate">
+        <a href="https://translate.google.co.jp/?hl=ja" target="_blank" rel="noopener noreferrer">
+            <button type="submit" class="btn btn-secondary">Google翻訳を利用して記事を翻訳する</button>
+        </a>
+    </div>
     <div class="card shadow">
         <div class="card-body">
             <h5 class="card-title text-secondary">ニュース一覧</h5>
