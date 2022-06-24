@@ -37,6 +37,10 @@
                 <input type="hidden" name="ee_id" value="{{$emergencyEvent->ee_id}}">
               </td>
               <td class="table-text">
+                <input class="form-control" type="text" name="title" placeholder="タイトル" value="{{old("title")}}">
+                <input type="hidden" name="ee_id" value="{{$emergencyEvent->ee_id}}">
+              </td>
+              <td class="table-text">
                 <button type="submit" class="btn btn-success">登録</button>
               </td>
               <td>
@@ -54,6 +58,10 @@
                     <!-- URL -->
                     <td class="table-text">
                         <input class="form-control" type="text" name="url" value="{{ $siteUrl->url }}">
+                        <input type="hidden" name="site_id" value="{{ $siteUrl->site_id }}">
+                    </td>
+                    <td class="table-text">
+                        <input class="form-control" type="text" name="title" value="{{ $siteUrl->title }}">
                         <input type="hidden" name="site_id" value="{{ $siteUrl->site_id }}">
                     </td>
                     <!-- 編集ボタン -->

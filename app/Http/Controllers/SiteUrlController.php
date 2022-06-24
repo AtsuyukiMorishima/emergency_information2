@@ -23,6 +23,7 @@ class SiteUrlController extends Controller
         //バリデーション
         $validator = Validator::make($request->all(), [
             'url' => 'required|url',
+            'title' => 'required',
             'ee_id' => 'required'
         ]);
         //バリデーション:エラー
@@ -34,6 +35,7 @@ class SiteUrlController extends Controller
 
         $siteUrl = new SiteUrl();
         $siteUrl->ee_id = $request->ee_id;
+        $siteUrl->title = $request->title;
         $siteUrl->url = $request->url;
         $siteUrl->save();
 
@@ -52,6 +54,7 @@ class SiteUrlController extends Controller
         //バリデーション
         $validator = Validator::make($request->all(), [
             'url' => 'required|url',
+            'title' => 'required',
             'site_id' => 'required'
         ]);
         //バリデーション:エラー
@@ -62,6 +65,7 @@ class SiteUrlController extends Controller
         }
 
         $siteUrl = SiteUrl::find($request->site_id);
+        $siteUrl->title = $request->title;
         $siteUrl->url = $request->url;
         $siteUrl->save();
 
