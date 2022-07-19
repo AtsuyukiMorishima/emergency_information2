@@ -37,10 +37,10 @@
                 <input type="hidden" name="ee_id" value="{{$emergencyEvent->ee_id}}">
                 <input name="tags" id="input-custom-dropdown" class="form-control news-tag" placeholder="タグ">
               </td>
-              <td class="table-text">
+              <!-- <td class="table-text">
                 <input class="form-control" type="text" name="title" placeholder="タイトル" value="{{old("title")}}">
                 <input type="hidden" name="ee_id" value="{{$emergencyEvent->ee_id}}">
-              </td>
+              </td> -->
               <td class="table-text">
                 <button type="submit" class="btn btn-success">登録</button>
               </td>
@@ -63,10 +63,10 @@
                         <input name="tags" id="input-custom-dropdown" class="form-control news-tag" placeholder="タグ"
                         value="@isset($siteUrl->tags_json)@foreach(json_decode($siteUrl->tags_json) as $tag)#{{$tag->tag_name}} @endforeach @endisset">
                     </td>
-                    <td class="table-text">
+                    <!-- <td class="table-text">
                         <input class="form-control" type="text" name="title" value="{{ $siteUrl->title }}" placeholder="タイトル">
                         <input type="hidden" name="site_id" value="{{ $siteUrl->site_id }}">
-                    </td>
+                    </td> -->
                     <!-- 編集ボタン -->
                     <td>
                           <button type="submit" class="btn btn-primary">更新</button>
